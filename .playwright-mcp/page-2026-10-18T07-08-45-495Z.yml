@@ -1,0 +1,97 @@
+- generic [ref=e1]:
+  - banner [ref=e2]:
+    - link "교사 작업실 홈" [ref=e3] [cursor=pointer]:
+      - /url: "#teacher-home"
+      - img [ref=e5]
+      - generic [ref=e7]:
+        - strong [ref=e8]: 고려의 길
+        - generic [ref=e9]: TEACHER STUDIO
+    - navigation "교사 메뉴" [ref=e10]:
+      - button "교사 홈" [ref=e11] [cursor=pointer]
+      - button "문제 만들기" [ref=e12] [cursor=pointer]
+    - generic [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e15]: 교
+        - generic [ref=e16]: 교사 화면
+      - button "역할 바꾸기" [ref=e17] [cursor=pointer]
+  - main [ref=e18]:
+    - region "수업 준비를 시작해요." [ref=e19]:
+      - generic [ref=e20]:
+        - generic [ref=e21]:
+          - text: TEACHER WORKSPACE
+          - heading "수업 준비를 시작해요." [level=1] [ref=e22]
+          - paragraph [ref=e23]: 교과서 PDF에서 문제를 만들고, 검토한 뒤 학생 과제로 열어보세요.
+        - button "PDF로 문제 만들기 →" [ref=e24] [cursor=pointer]:
+          - text: PDF로 문제 만들기
+          - generic [ref=e25]: →
+      - generic [ref=e26]:
+        - article [ref=e27]:
+          - generic [ref=e28]: "01"
+          - generic [ref=e29]:
+            - generic [ref=e30]: 승인된 문제
+            - strong [ref=e31]: 0개
+        - article [ref=e32]:
+          - generic [ref=e33]: "02"
+          - generic [ref=e34]:
+            - generic [ref=e35]: 과제 상태
+            - strong [ref=e36]: 1 / 40명 접속
+        - article [ref=e37]:
+          - generic [ref=e38]: "03"
+          - generic [ref=e39]:
+            - generic [ref=e40]: 현재 단원
+            - strong [ref=e41]: 고려의 건국과 통치 체제
+      - generic [ref=e42]:
+        - generic [ref=e43]:
+          - text: YOUR CLASSROOM
+          - heading "교사 도구" [level=2] [ref=e44]
+        - generic [ref=e45]: 수업 초대는 과제별 QR로 공유
+      - generic [ref=e46]:
+        - article [ref=e47]:
+          - generic [ref=e48]: 01 / 출제
+          - heading "교과서에서 문제 만들기" [level=3] [ref=e49]:
+            - text: 교과서에서
+            - text: 문제 만들기
+          - paragraph [ref=e50]: Solar AI 초안을 근거 페이지와 함께 검토하고 수정해요.
+          - button "문제 스튜디오 열기 →" [ref=e51] [cursor=pointer]:
+            - text: 문제 스튜디오 열기
+            - generic [ref=e52]: →
+        - article [ref=e53]:
+          - generic [ref=e54]: 02 / 배포
+          - heading "Blooket 업로드용 엑셀 만들기" [level=3] [ref=e55]:
+            - text: Blooket 업로드용
+            - text: 엑셀 만들기
+          - paragraph [ref=e56]: 승인된 문제를 객관식 퀴즈 형식으로 내려받아요.
+          - button "승인 문제 보기 →" [ref=e57] [cursor=pointer]:
+            - text: 승인 문제 보기
+            - generic [ref=e58]: →
+        - article [ref=e59]:
+          - generic [ref=e60]: 03 / 과제
+          - heading "초대 링크를 공유했어요" [level=3] [ref=e61]
+          - paragraph [ref=e62]: 1명 접속 · 최대 40명. QR로 늦게 온 학생도 들어올 수 있어요.
+          - button "QR·접속 현황 보기 ↗" [active] [ref=e63] [cursor=pointer]
+      - generic [ref=e64]:
+        - generic [ref=e65]: i
+        - paragraph [ref=e66]: 교사와 학생 화면은 분리되어 있어요. 역할 바꾸기를 눌러 학생 화면으로 이동해 확인할 수 있습니다.
+  - status: 수업 방을 만들었어요. QR이나 참여 코드를 공유하세요.
+  - dialog "QR로 학생을 초대해요" [ref=e68]:
+    - button "초대 창 닫기" [ref=e69] [cursor=pointer]: ×
+    - text: CLASSROOM INVITE
+    - heading "QR로 학생을 초대해요" [level=2] [ref=e70]
+    - paragraph [ref=e71]: 학생이 QR을 스캔하면 바로 이 과제 대기실로 들어옵니다.
+    - generic [ref=e72]:
+      - generic "https://supot9hkfw06aqy4.jitda.io/?join=4E8N5Z" [ref=e74]:
+        - img [ref=e75]
+      - generic [ref=e76]:
+        - generic [ref=e77]: 직접 입력할 참여 코드
+        - strong [ref=e78]: 4E8N5Z
+        - button "초대 링크 복사 ↗" [ref=e79] [cursor=pointer]:
+          - text: 초대 링크 복사
+          - generic [ref=e80]: ↗
+    - generic [ref=e81]:
+      - generic [ref=e82]:
+        - strong [ref=e83]: "1"
+        - generic [ref=e84]: / 40명 접속
+      - paragraph [ref=e86]: 1명이 접속했어요. 학생은 계속 입장할 수 있어요.
+    - button "과제 시작하기 →" [ref=e87] [cursor=pointer]
+    - button "수업 방 닫기" [ref=e88] [cursor=pointer]
+    - paragraph [ref=e89]: 과제를 시작한 뒤에도 학생은 QR이나 코드로 참여할 수 있어요.

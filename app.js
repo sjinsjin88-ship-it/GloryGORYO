@@ -52,6 +52,7 @@ const initialState = {
   taskQuestions: [],
   challengeRoomCode: "",
   roomParticipants: {},
+  roomProfiles: {},
   roomConnectedCount: 0,
   roomStatus: "",
   peerScores: friends.map((friend) => ({ ...friend })),
@@ -96,10 +97,10 @@ function setView(name) {
     showRoleChooser();
     return;
   }
-  const allowedViews = state.activeRole === "teacher" ? ["teacherHome", "author"] : state.activeRole === "student" ? ["home", "play"] : [];
+  const allowedViews = state.activeRole === "teacher" ? ["teacherHome", "author"] : state.activeRole === "student" ? ["home", "play", "roomJoin"] : [];
   if (!allowedViews.includes(name)) return;
   byId("roleView").hidden = true;
-  byId("studentHeader").hidden = state.activeRole !== "student";
+  byId("studentHeader").hidden = state.activeRole !== "student" || name === "roomJoin";
   byId("teacherHeader").hidden = state.activeRole !== "teacher";
   document.querySelectorAll(".view").forEach((view) => {
     const active = view.id === `${name}View`;
@@ -130,10 +131,17 @@ function enterRole(role) {
   if (role !== "student" && role !== "teacher") return;
   state.activeRole = role;
   saveState();
-  if (role === "student" && state.challengeRoomCode && state.challengeOpen) {
-    byId("studentRoomCode").value = state.challengeRoomCode;
+  if (role === "student") {
+    const profile = state.roomProfiles?.[state.challengeRoomCode];
+    byId("studentAvatar").textContent = profile?.name?.slice(0, 1) || "학";
+    byId("studentAlias").textContent = profile ? `${profile.name} · ${profile.nickname}` : "학생 화면";
   }
   setView(role === "teacher" ? "teacherHome" : state.started ? "play" : "home");
+  if (role === "student" && state.challengeRoomCode && state.challengeOpen) {
+    const profile = state.roomProfiles?.[state.challengeRoomCode];
+    if (state.joined && profile) joinClassRoom(state.challengeRoomCode, profile);
+    else prepareRoomJoin(state.challengeRoomCode);
+  }
 }
 
 function renderTeacherHome() {
@@ -299,22 +307,62 @@ function startStudentRoomPolling(code) {
   }, 12000);
 }
 
-async function joinClassRoom(code, action = "join") {
+async function prepareRoomJoin(code) {
+  state.activeRole = "student";
+  state.challengeRoomCode = code;
+  saveState();
+  try {
+    const room = await roomRequest(`/api/rooms/${code}`);
+    if (room.status === "closed") throw new Error("선생님이 수업 방을 닫았어요.");
+    state.challengeOpen = true;
+    state.roomConnectedCount = room.connected;
+    state.roomStatus = room.status;
+    byId("roomJoinUnit").textContent = room.unit;
+    byId("roomJoinCode").textContent = code;
+    byId("roomJoinCount").textContent = room.connected;
+    const savedProfile = state.roomProfiles?.[code];
+    byId("joinStudentName").value = savedProfile?.name || "";
+    byId("joinStudentNickname").value = savedProfile?.nickname || "";
+    state.joined = false;
+    state.started = false;
+    saveState();
+    setView("roomJoin");
+  } catch (error) {
+    state.challengeOpen = false;
+    state.joined = false;
+    saveState();
+    setView("home");
+    showToast(error.message || "수업 방에 연결하지 못했어요.");
+  }
+}
+
+async function joinClassRoom(code, profile) {
+  const name = profile?.name?.trim() || "";
+  const nickname = profile?.nickname?.trim() || "";
+  if (Array.from(name).length !== 2 || !nickname || Array.from(nickname).length > 12) {
+    showToast("이름 두 글자와 12자 이내 별명을 입력해 주세요.");
+    return;
+  }
   const alreadyPlaying = state.challengeRoomCode === code && state.mode === "challenge" && state.started;
   state.activeRole = "student";
   state.challengeRoomCode = code;
-  state.challengeOpen = true;
+  state.roomProfiles ||= {};
+  state.roomProfiles[code] = { name, nickname };
+  state.studentAlias = `${name} · ${nickname}`;
   state.joined = true;
   state.mode = "challenge";
   saveState();
   try {
-    const room = await roomRequest(`/api/rooms/${code}/${action}`, "POST", {
+    const room = await roomRequest(`/api/rooms/${code}/join`, "POST", {
       participantId: getRoomParticipantId(code),
     });
     state.roomConnectedCount = room.connected;
     state.roomStatus = room.status;
     state.taskQuestions = room.questions || state.taskQuestions;
     state.challengeOpen = room.status !== "closed";
+    byId("studentAvatar").textContent = name.slice(0, 1);
+    byId("studentAlias").textContent = state.studentAlias;
+    window.history.replaceState({}, "", window.location.pathname);
     if (room.status === "started" && !alreadyPlaying) {
       startQuiz("challenge");
     } else {
@@ -332,9 +380,8 @@ async function joinClassRoom(code, action = "join") {
     state.challengeOpen = false;
     state.joined = false;
     state.started = false;
-    state.challengeRoomCode = "";
     saveState();
-    setView("home");
+    setView("roomJoin");
     showToast(error.message || "수업 방에 들어가지 못했어요.");
   }
 }
@@ -343,13 +390,38 @@ document.querySelectorAll("[data-role-choice]").forEach((button) => button.addEv
 document.querySelectorAll("[data-role-switch]").forEach((button) => button.addEventListener("click", showRoleChooser));
 document.querySelectorAll("[data-view]").forEach((button) => button.addEventListener("click", () => setView(button.dataset.view)));
 byId("studentRoomCode").addEventListener("input", (event) => { event.currentTarget.value = event.currentTarget.value.toUpperCase().replace(/[^A-Z0-9]/g, ""); });
+byId("roomJoinForm").addEventListener("submit", (event) => {
+  event.preventDefault();
+  const name = byId("joinStudentName").value.trim();
+  const nickname = byId("joinStudentNickname").value.trim();
+  if (Array.from(name).length !== 2) {
+    showToast("이름은 두 글자로 입력해 주세요.");
+    byId("joinStudentName").focus();
+    return;
+  }
+  if (!nickname || Array.from(nickname).length > 12) {
+    showToast("별명을 1~12자로 입력해 주세요.");
+    byId("joinStudentNickname").focus();
+    return;
+  }
+  joinClassRoom(state.challengeRoomCode, { name, nickname });
+});
+byId("cancelRoomJoin").addEventListener("click", () => {
+  state.challengeRoomCode = "";
+  state.challengeOpen = false;
+  state.joined = false;
+  state.started = false;
+  saveState();
+  window.history.replaceState({}, "", window.location.pathname);
+  setView("home");
+});
 byId("joinRoomByCode").addEventListener("click", () => {
   const code = byId("studentRoomCode").value.trim().toUpperCase();
   if (!/^[A-Z0-9]{6}$/.test(code)) {
     showToast("6자리 참여 코드를 확인해 주세요.");
     return;
   }
-  joinClassRoom(code);
+  prepareRoomJoin(code);
 });
 byId("studentRoomCode").addEventListener("keydown", (event) => { if (event.key === "Enter") byId("joinRoomByCode").click(); });
 document.querySelectorAll("[data-join-challenge]").forEach((button) => button.addEventListener("click", () => {
@@ -367,7 +439,8 @@ function getRank() {
 }
 
 function renderLeaderboard() {
-  const rows = [...state.peerScores.map((peer) => ({ ...peer, isMe: false })), { id: "me", name: "민서", avatar: "민", score: state.challengePoints, isMe: true }]
+  const currentProfile = state.roomProfiles?.[state.challengeRoomCode];
+  const rows = [...state.peerScores.map((peer) => ({ ...peer, isMe: false })), { id: "me", name: currentProfile ? `${currentProfile.name} · ${currentProfile.nickname}` : "나", avatar: currentProfile?.name?.slice(0, 1) || "나", score: state.challengePoints, isMe: true }]
     .sort((a, b) => b.score - a.score)
     .slice(0, 8);
   const list = byId("leaderboard");
@@ -383,7 +456,7 @@ function renderLeaderboard() {
     avatar.textContent = row.avatar;
     const name = document.createElement("span");
     name.className = "rank-name";
-    name.textContent = row.isMe ? "나 (민서)" : row.name;
+    name.textContent = row.isMe ? `나 (${row.name})` : row.name;
     const score = document.createElement("span");
     score.className = "rank-score";
     score.textContent = `${row.score.toLocaleString()}점`;
@@ -810,7 +883,14 @@ function closeReward() {
 }
 byId("closeReward").addEventListener("click", closeReward);
 byId("rewardOverlay").addEventListener("click", (event) => { if (event.target === byId("rewardOverlay")) closeReward(); });
-document.addEventListener("keydown", (event) => { if (event.key === "Escape" && !byId("rewardOverlay").hidden) closeReward(); });
+document.addEventListener("keydown", (event) => {
+  if (event.key !== "Escape") return;
+  if (!byId("rewardOverlay").hidden) closeReward();
+  else if (!byId("roomShareOverlay").hidden) {
+    byId("roomShareOverlay").hidden = true;
+    stopTeacherRoomPolling();
+  }
+});
 
 function sprinkleConfetti(amount = 18) {
   const layer = byId("confettiLayer");
@@ -1142,18 +1222,16 @@ async function bootApp() {
   if (inviteCode && /^[A-Z0-9]{6}$/.test(inviteCode)) {
     state.activeRole = "student";
     state.challengeRoomCode = inviteCode;
-    state.joined = true;
+    state.challengeOpen = true;
+    state.joined = false;
     state.started = false;
     state.mode = "challenge";
     saveState();
-    window.history.replaceState({}, "", window.location.pathname);
     enterRole("student");
-    await joinClassRoom(inviteCode);
     return;
   }
   if (state.activeRole === "student") {
     enterRole("student");
-    if (state.challengeRoomCode && state.joined) await joinClassRoom(state.challengeRoomCode);
   } else if (state.activeRole === "teacher") {
     enterRole("teacher");
     if (state.challengeRoomCode && state.challengeOpen) pollTeacherRoom(state.challengeRoomCode);

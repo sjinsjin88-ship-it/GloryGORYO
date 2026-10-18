@@ -24,7 +24,7 @@
         <span class="brand-copy"><strong>고려의 길</strong><small>STUDENT QUEST</small></span>
       </a>
       <nav class="main-nav" aria-label="학생 메뉴"><button class="nav-link active" data-view="home">내 학습</button><button class="nav-link" data-view="play">퀴즈 광장</button></nav>
-      <div class="header-actions"><div class="profile-chip"><span class="profile-avatar">민</span><span>학생 화면</span><span class="profile-dot"></span></div><button class="role-switch" data-role-switch>역할 바꾸기</button></div>
+      <div class="header-actions"><div class="profile-chip"><span class="profile-avatar" id="studentAvatar">학</span><span id="studentAlias">학생 화면</span><span class="profile-dot"></span></div><button class="role-switch" data-role-switch>역할 바꾸기</button></div>
     </header>
     <header class="topbar role-header" id="teacherHeader" hidden>
       <a class="brand" href="#teacher-home" aria-label="교사 작업실 홈">
@@ -48,6 +48,13 @@
             <article class="role-choice teacher-choice"><div class="role-card-icon teacher-card-icon"><svg viewBox="0 0 48 48" fill="none"><path d="M8 39h32M12 39V17h24v22M17 22h14M17 28h14M17 34h8M7 17l17-9 17 9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="role-label">수업 준비 공간</span><h2>선생님으로 시작</h2><p>교과서 PDF에서 문제를 만들고<br />검토한 뒤 과제로 열어요.</p><button class="button button-ink role-enter" data-role-choice="teacher">교사 작업실 열기 <span>→</span></button></article>
           </div>
           <p class="role-demo-note">로그인 없이 역할을 선택하는 데모예요. 수업 QR과 접속 인원은 여러 기기에서 연결돼요.</p>
+        </div>
+      </section>
+
+      <section class="view student-view room-join-view" id="roomJoinView" aria-labelledby="roomJoinTitle" hidden>
+        <div class="room-join-shell">
+          <div class="room-join-art"><span class="section-kicker">CLASSROOM QUEST</span><div class="join-seal"><svg viewBox="0 0 64 64" fill="none"><path d="M14 48h36M18 48V26l14-10 14 10v22M25 48V34h14v14M12 26h40" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="32" cy="26" r="2" fill="currentColor"/></svg></div><h1 id="roomJoinTitle">수업에 참여해요</h1><p><strong id="roomJoinUnit">고려 역사</strong><br />이름과 별명을 정하면 대기실로 이동합니다.</p><div class="room-join-count"><span class="room-live-dot"></span><span><strong id="roomJoinCount">0</strong> / 40명 접속 중</span></div></div>
+          <form class="room-join-form" id="roomJoinForm"><span class="step-number">STUDENT PROFILE</span><h2>친구들에게 어떻게 보일까요?</h2><p>이 이름과 별명은 현재 학생 화면에서만 사용돼요.</p><label for="joinStudentName">이름 두 글자</label><input id="joinStudentName" type="text" maxlength="2" autocomplete="given-name" placeholder="예: 민서" required /><label for="joinStudentNickname">내 별명</label><input id="joinStudentNickname" type="text" maxlength="12" autocomplete="nickname" placeholder="예: 역사왕" required /><div class="room-join-code">참여 코드 <strong id="roomJoinCode">------</strong></div><button class="button button-coral" type="submit">대기실 입장 <span>→</span></button><button class="text-button room-join-back" type="button" id="cancelRoomJoin">학생 홈으로 돌아가기</button></form>
         </div>
       </section>
 
@@ -169,12 +176,12 @@
         <button class="modal-close" id="closeRoomShare" aria-label="초대 창 닫기">×</button>
         <span class="section-kicker">CLASSROOM INVITE</span>
         <h2 id="roomShareTitle">QR로 학생을 초대해요</h2>
-        <p class="room-share-lead">학생이 QR을 스캔하면 바로 이 과제 대기실로 들어옵니다.</p>
+        <p class="room-share-lead">QR을 스캔하고 이름과 별명을 입력하면 과제 대기실로 들어와요.</p>
         <div class="room-share-content"><div class="room-qr-frame"><div id="roomQr"></div></div><div class="room-code-panel"><span>직접 입력할 참여 코드</span><strong id="roomCodeText">------</strong><button class="button button-light" id="copyRoomLink">초대 링크 복사 <span>↗</span></button></div></div>
         <div class="room-connected-panel"><div><strong id="roomConnectedCount">0</strong><span> / 40명 접속</span></div><span class="room-live-dot"></span><p id="roomStatusText">학생이 접속하기를 기다리고 있어요.</p></div>
         <button class="button button-coral room-start-button" id="startRoomTask">과제 시작하기 <span>→</span></button>
         <button class="text-button room-close-button" id="closeRoomTask">수업 방 닫기</button>
-        <p class="room-share-footnote">과제를 시작한 뒤에도 학생은 QR이나 코드로 참여할 수 있어요.</p>
+        <p class="room-share-footnote">수업이 시작된 뒤 늦게 온 학생도 QR이나 코드로 참여할 수 있어요.</p>
       </section>
     </div>
     <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
