@@ -1,0 +1,41 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - region "어떤 화면으로 시작할까요?" [ref=e3]:
+      - generic [ref=e4]:
+        - link "고려의 길" [ref=e5] [cursor=pointer]:
+          - /url: "#"
+          - img [ref=e7]
+          - generic [ref=e9]:
+            - strong [ref=e10]: 고려의 길
+            - generic [ref=e11]: HISTORY QUEST
+        - generic [ref=e12]:
+          - generic [ref=e13]: 고려 역사 퀴즈 플랫폼
+          - heading "어떤 화면으로 시작할까요?" [level=1] [ref=e15]:
+            - text: 어떤 화면으로
+            - text: 시작할까요?
+          - paragraph [ref=e16]:
+            - text: 학생은 문제를 풀고, 선생님은 교과서에서 문제를 만들어요.
+            - text: 각자 필요한 공간으로 들어가세요.
+        - generic [ref=e17]:
+          - article [ref=e18]:
+            - img [ref=e20]
+            - text: 학습자 공간
+            - heading "학생으로 시작" [level=2] [ref=e23]
+            - paragraph [ref=e24]:
+              - text: 혼자 연습하고, 과제에 참여해
+              - text: 점수와 보상을 모아요.
+            - button "학생 화면 열기 →" [ref=e25] [cursor=pointer]:
+              - text: 학생 화면 열기
+              - generic [ref=e26]: →
+          - article [ref=e27]:
+            - img [ref=e29]
+            - text: 수업 준비 공간
+            - heading "선생님으로 시작" [level=2] [ref=e31]
+            - paragraph [ref=e32]:
+              - text: 교과서 PDF에서 문제를 만들고
+              - text: 검토한 뒤 과제로 열어요.
+            - button "교사 작업실 열기 →" [ref=e33] [cursor=pointer]:
+              - text: 교사 작업실 열기
+              - generic [ref=e34]: →
+        - paragraph [ref=e35]: 로그인 없이 역할을 선택하는 데모예요. 수업 QR과 접속 인원은 여러 기기에서 연결돼요.
+  - status

@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6f3ed" />
+    <title>고려의 길 - 역사 퀴즈</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="order.css" />
+    <link rel="stylesheet" href="roles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar role-header" id="studentHeader" hidden>
+      <a class="brand" href="#home" aria-label="학생 학습 홈">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M7 31h26M10 31V18l10-7 10 7v13M15 31v-8h10v8M6 18h28M20 5v8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="brand-copy"><strong>고려의 길</strong><small>STUDENT QUEST</small></span>
+      </a>
+      <nav class="main-nav" aria-label="학생 메뉴"><button class="nav-link active" data-view="home">내 학습</button><button class="nav-link" data-view="play">퀴즈 광장</button></nav>
+      <div class="header-actions"><div class="profile-chip"><span class="profile-avatar">민</span><span>학생 화면</span><span class="profile-dot"></span></div><button class="role-switch" data-role-switch>역할 바꾸기</button></div>
+    </header>
+    <header class="topbar role-header" id="teacherHeader" hidden>
+      <a class="brand" href="#teacher-home" aria-label="교사 작업실 홈">
+        <span class="brand-mark teacher-brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M8 31h24M11 31V13h18v18M15 18h10M15 23h10M15 28h6M7 13l13-7 13 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="brand-copy"><strong>고려의 길</strong><small>TEACHER STUDIO</small></span>
+      </a>
+      <nav class="main-nav" aria-label="교사 메뉴"><button class="nav-link active" data-view="teacherHome">교사 홈</button><button class="nav-link" data-view="author">문제 만들기</button></nav>
+      <div class="header-actions"><div class="profile-chip"><span class="profile-avatar teacher-avatar">교</span><span>교사 화면</span></div><button class="role-switch" data-role-switch>역할 바꾸기</button></div>
+    </header>
+
+    <main>
+      <section class="view role-select-view active" id="roleView" aria-labelledby="roleTitle">
+        <div class="role-select-shell">
+          <a class="brand role-select-brand" href="#" aria-label="고려의 길">
+            <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M7 31h26M10 31V18l10-7 10 7v13M15 31v-8h10v8M6 18h28M20 5v8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="brand-copy"><strong>고려의 길</strong><small>HISTORY QUEST</small></span>
+          </a>
+          <div class="role-intro"><span class="eyebrow"><span class="eyebrow-dot"></span> 고려 역사 퀴즈 플랫폼</span><h1 id="roleTitle">어떤 화면으로<br />시작할까요?</h1><p>학생은 문제를 풀고, 선생님은 교과서에서 문제를 만들어요.<br />각자 필요한 공간으로 들어가세요.</p></div>
+          <div class="role-choice-grid">
+            <article class="role-choice student-choice"><div class="role-card-icon student-card-icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="16" r="8" stroke="currentColor" stroke-width="2.5"/><path d="M9 40c1.4-7.4 6.5-11 15-11s13.6 3.6 15 11M34 8l2 4 4 2-4 2-2 4-2-4-4-2 4-2 2-4Z" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="role-label">학습자 공간</span><h2>학생으로 시작</h2><p>혼자 연습하고, 과제에 참여해<br />점수와 보상을 모아요.</p><button class="button button-coral role-enter" data-role-choice="student">학생 화면 열기 <span>→</span></button></article>
+            <article class="role-choice teacher-choice"><div class="role-card-icon teacher-card-icon"><svg viewBox="0 0 48 48" fill="none"><path d="M8 39h32M12 39V17h24v22M17 22h14M17 28h14M17 34h8M7 17l17-9 17 9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="role-label">수업 준비 공간</span><h2>선생님으로 시작</h2><p>교과서 PDF에서 문제를 만들고<br />검토한 뒤 과제로 열어요.</p><button class="button button-ink role-enter" data-role-choice="teacher">교사 작업실 열기 <span>→</span></button></article>
+          </div>
+          <p class="role-demo-note">로그인 없이 역할을 선택하는 데모예요. 수업 QR과 접속 인원은 여러 기기에서 연결돼요.</p>
+        </div>
+      </section>
+
+      <section class="view student-view" id="homeView" aria-labelledby="homeTitle" hidden>
+        <div class="hero-shell">
+          <div class="hero-copy">
+            <div class="eyebrow"><span class="eyebrow-dot"></span> 오늘의 역사 탐험</div>
+            <h1 id="homeTitle">고려의 이야기를<br /><span class="hero-second-line"><em>내 점수로</em> <span>바꿔봐요.</span></span></h1>
+            <p>문제를 풀고, 연속 정답을 이어가고, 숨겨진 보상을 찾아보세요.</p>
+            <button class="button button-ink" data-go="play">퀴즈 광장으로 <span aria-hidden="true">↗</span></button>
+          </div>
+          <div class="hero-art" aria-label="고려 왕관과 보물 상자 일러스트">
+            <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+            <div class="sun-disc"></div>
+            <div class="crown-art"><svg viewBox="0 0 220 170" fill="none"><path d="M32 128 20 53l46 37 42-67 42 67 47-37-13 75H32Z" fill="#E9B949" stroke="#875D16" stroke-width="6" stroke-linejoin="round"/><path d="M32 128h152v20H32z" fill="#D79A2B" stroke="#875D16" stroke-width="6"/><circle cx="20" cy="49" r="10" fill="#F8D77B" stroke="#875D16" stroke-width="5"/><circle cx="108" cy="20" r="10" fill="#F8D77B" stroke="#875D16" stroke-width="5"/><circle cx="197" cy="49" r="10" fill="#F8D77B" stroke="#875D16" stroke-width="5"/><path d="M55 128v20m35-20v20m37-20v20m35-20v20" stroke="#875D16" stroke-width="5"/></svg></div>
+            <div class="treasure-art"><span class="chest-glow"></span><svg viewBox="0 0 150 110" fill="none"><path d="M20 45h110v53H20z" fill="#C86B42" stroke="#713E2D" stroke-width="6"/><path d="M15 44c0-18 13-31 30-31h60c17 0 30 13 30 31v9H15v-9Z" fill="#E38B55" stroke="#713E2D" stroke-width="6"/><path d="M67 51h17v25H67z" fill="#F6D16F" stroke="#713E2D" stroke-width="5"/><path d="M27 68h96M41 54v38m68-38v38" stroke="#713E2D" stroke-width="5"/></svg></div>
+            <span class="floating-star star-a">✦</span><span class="floating-star star-b">✧</span><span class="floating-star star-c">✦</span>
+            <div class="art-caption">고려 918 — 1392</div>
+          </div>
+          <div class="hero-stat"><span class="stat-label">나의 도전 점수</span><strong id="homePoints">0<span>점</span></strong><span class="stat-foot"><i></i> 오늘도 한 문제씩 쌓아봐요</span></div>
+        </div>
+
+        <div class="section-heading"><div><span class="section-kicker">CONTINUE YOUR JOURNEY</span><h2>오늘은 어디부터 탐험할까요?</h2></div><button class="text-button" data-go="play">모두 보기 <span>→</span></button></div>
+        <div class="journey-grid">
+          <article class="journey-card challenge-card">
+            <div class="card-topline"><span class="card-icon icon-coral"><svg viewBox="0 0 24 24" fill="none"><path d="m12 3 2.4 5.2L20 10l-4 4 .9 5.7-4.9-2.8-4.9 2.8L8 14l-4-4 5.6-1.8L12 3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span><span class="status-pill"><i></i><span id="studentChallengeStatus">대기 중</span></span></div>
+            <span class="card-label">학급 챌린지 · 2단원</span><h3>고려의 건국과<br />통치 체제</h3><p id="studentChallengeHelp">선생님이 시작하기 전까지 연습할 수 있어요.</p><button class="button button-coral" data-join-challenge>과제 참여 <span>→</span></button>
+            <div class="card-decoration decoration-wave"></div>
+          </article>
+          <article class="journey-card practice-card">
+            <div class="card-topline"><span class="card-icon icon-blue"><svg viewBox="0 0 24 24" fill="none"><path d="M5 4.5A2.5 2.5 0 0 1 7.5 2H20v18H7.5A2.5 2.5 0 0 1 5 17.5v-13Z" stroke="currentColor" stroke-width="1.8"/><path d="M5 17.5A2.5 2.5 0 0 1 7.5 15H20M9 7h7m-7 4h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="tiny-label">혼자 연습하기</span></div>
+            <span class="card-label">고려 시대 · 추천 코스</span><h3>왕건부터<br />공민왕까지</h3><p>내 속도에 맞춰 문제를 반복해서 풀어요.</p><button class="button button-blue" data-go="play" data-practice="true">연습 시작 <span>→</span></button>
+            <div class="card-decoration decoration-ring"></div>
+          </article>
+          <article class="journey-card reward-journey-card">
+            <div class="card-topline"><span class="card-icon icon-yellow"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3 14 8l5 2-5 2-2 5-2-5-5-2 5-2 2-5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m19 15 1.2 2.8L23 19l-2.8 1.2L19 23l-1.2-2.8L15 19l2.8-1.2L19 15Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span><span class="tiny-label">5연속 정답 보상</span></div>
+            <span class="card-label">연속 정답을 이어가 봐요</span><h3>미스터리 상자에<br />도전해요</h3><p>정답을 맞히고 상자를 골라 깜짝 보상을 받아요.</p><button class="button button-light" data-go="play">보상 도전하기 <span>→</span></button>
+            <div class="card-decoration decoration-spark"></div>
+          </article>
+        </div>
+        <div class="student-code-join"><div><span>수업 코드로 참여</span><small>QR을 사용할 수 없으면 6자리 코드를 입력하세요.</small></div><input id="studentRoomCode" type="text" inputmode="text" maxlength="6" autocomplete="off" placeholder="예: A2BC34" aria-label="수업 참여 코드" /><button class="button button-blue" id="joinRoomByCode">참여하기 <span>→</span></button></div>
+        <div class="home-bottom-row">
+          <div class="mini-panel streak-panel"><div class="mini-icon flame-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M13 2c1 5-3 6-2 10 1-1 2-2 2-3 4 3 6 6 4 10-1 2-3 3-6 3-4 0-7-3-7-7 0-3 2-6 5-9 0 3 1 4 2 5 0-4 1-6 2-9Z" fill="currentColor"/></svg></div><div><span class="mini-label">현재 연속 정답</span><strong id="homeStreak">0문제</strong></div><span class="mini-arrow">↗</span></div>
+          <div class="mini-panel source-panel"><div class="source-mark rank-mark">#</div><div><span class="mini-label">오늘의 과제</span><strong id="studentChallengeSummary">선생님이 과제를 준비 중이에요</strong></div><button class="round-arrow" data-go="play" aria-label="과제 보기">↗</button></div>
+        </div>
+        <footer class="footer-note"><span>고려의 길</span><span>배움은 탐험처럼, 한 문제부터.</span></footer>
+      </section>
+
+      <section class="view teacher-view" id="teacherHomeView" aria-labelledby="teacherHomeTitle" hidden>
+        <div class="teacher-welcome">
+          <div><span class="section-kicker">TEACHER WORKSPACE</span><h1 id="teacherHomeTitle">수업 준비를 시작해요.</h1><p>교과서 PDF에서 문제를 만들고, 검토한 뒤 학생 과제로 열어보세요.</p></div>
+          <button class="button button-coral" data-go="author">PDF로 문제 만들기 <span>→</span></button>
+        </div>
+        <div class="teacher-metrics">
+          <article class="teacher-metric"><span class="metric-icon metric-book">01</span><div><span>승인된 문제</span><strong id="teacherQuestionCount">0개</strong></div></article>
+          <article class="teacher-metric"><span class="metric-icon metric-class">02</span><div><span>과제 상태</span><strong id="teacherTaskStatus">아직 열리지 않음</strong></div></article>
+          <article class="teacher-metric"><span class="metric-icon metric-unit">03</span><div><span>현재 단원</span><strong id="teacherUnitName">고려의 건국과 통치 체제</strong></div></article>
+        </div>
+        <div class="teacher-section-heading"><div><span class="section-kicker">YOUR CLASSROOM</span><h2>교사 도구</h2></div><span class="teacher-class-code">수업 초대는 과제별 QR로 공유</span></div>
+        <div class="teacher-actions-grid">
+          <article class="teacher-action-card create-action"><span class="teacher-action-number">01 / 출제</span><h3>교과서에서<br />문제 만들기</h3><p>Solar AI 초안을 근거 페이지와 함께 검토하고 수정해요.</p><button class="text-button" data-go="author">문제 스튜디오 열기 <span>→</span></button></article>
+          <article class="teacher-action-card export-action"><span class="teacher-action-number">02 / 배포</span><h3>Blooket 업로드용<br />엑셀 만들기</h3><p>승인된 문제를 객관식 퀴즈 형식으로 내려받아요.</p><button class="text-button" data-go="author">승인 문제 보기 <span>→</span></button></article>
+          <article class="teacher-action-card assignment-action"><span class="teacher-action-number">03 / 과제</span><h3 id="teacherAssignmentTitle">학급 과제를 열어요</h3><p id="teacherAssignmentHelp">학생은 과제 참여 후 대기실에서 단원 연습을 할 수 있어요.</p><button class="button button-ink" id="teacherStart">과제 시작하기 <span>→</span></button></article>
+        </div>
+        <div class="teacher-footnote"><span class="teacher-footnote-mark">i</span><p>교사와 학생 화면은 분리되어 있어요. 역할 바꾸기를 눌러 학생 화면으로 이동해 확인할 수 있습니다.</p></div>
+      </section>
+
+      <section class="view teacher-view" id="authorView" aria-labelledby="authorTitle" hidden>
+        <div class="page-heading"><div><span class="section-kicker">TEACHER STUDIO</span><h1 id="authorTitle">교과서에서 문제 만들기</h1><p>Solar AI가 PDF 근거를 확인해 문제 초안을 만들고, 페이지와 함께 보여줘요.</p></div><span class="demo-tag"><i></i> Solar AI 연결</span></div>
+        <div class="author-layout">
+          <aside class="upload-column">
+            <div class="panel upload-panel">
+              <div class="panel-heading"><span class="step-number">01</span><div><h2>교과서 PDF 올리기</h2><p>텍스트가 선택되는 PDF를 지원해요.</p></div></div>
+              <label class="drop-zone" id="dropZone" for="pdfInput"><input id="pdfInput" type="file" accept="application/pdf,.pdf" /><span class="upload-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M4 15v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><strong id="uploadTitle">PDF를 여기에 놓거나</strong><span id="uploadHint">파일 선택하기</span><small>PDF · 최대 20MB</small></label>
+              <div class="upload-meta" id="uploadMeta" hidden><span class="pdf-badge">PDF</span><div><strong id="fileName">교과서.pdf</strong><small id="pageCount">페이지 분석 중</small></div><button class="icon-button" id="removePdf" aria-label="PDF 제거">×</button></div>
+              <div class="field-row"><label for="unitName">단원 이름</label><input id="unitName" type="text" value="고려의 건국과 통치 체제" /></div>
+              <div class="field-row"><label for="questionCount">문제 초안 개수</label><select id="questionCount"><option value="5">5문제</option><option value="10" selected>10문제</option><option value="15">15문제</option></select></div>
+              <fieldset class="type-field"><legend>출제 유형</legend><label><input class="type-choice" type="checkbox" value="mc" checked /> 객관식</label><label><input class="type-choice" type="checkbox" value="short" checked /> 단답형</label><label><input class="type-choice" type="checkbox" value="order" checked /> 순서 맞추기</label></fieldset>
+              <button class="button button-ink full-button" id="generateButton" disabled>PDF에서 문제 초안 만들기 <span>✦</span></button>
+              <p class="privacy-note"><svg viewBox="0 0 20 20" fill="none"><rect x="4" y="8" width="12" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 8V5a3 3 0 0 1 6 0v3" stroke="currentColor" stroke-width="1.5"/></svg> PDF 원본은 전송하지 않고, 추출한 글자만 Solar AI로 보내요.</p>
+            </div>
+            <div class="demo-explainer"><span class="explainer-star">✳</span><p><strong>AI 초안 검토 안내</strong><br />근거가 확인되는 문제만 초안으로 보여드려요. 정답과 인용 페이지를 꼭 검토한 뒤 승인해 주세요. 스캔 이미지 PDF는 글자를 읽지 못할 수 있어요.</p></div>
+          </aside>
+          <div class="draft-column">
+            <div class="panel draft-panel">
+              <div class="draft-header"><div class="panel-heading"><span class="step-number">02</span><div><h2>문제 초안 검토</h2><p id="draftSummary">PDF를 올리면 출제 초안이 여기에 보여요.</p></div></div><button class="text-button small" id="approveAll" hidden>모두 승인 <span>→</span></button></div>
+              <div class="empty-drafts" id="emptyDrafts"><div class="empty-illustration"><span class="empty-page page-one"></span><span class="empty-page page-two"></span><span class="empty-spark">✦</span></div><h3>아직 만든 문제가 없어요</h3><p>PDF를 올리면 문제와 출처 페이지가 이곳에 나타나요.</p><button class="text-button" id="loadSample">예시 PDF 없이 체험하기 <span>→</span></button></div>
+              <div class="draft-list" id="draftList"></div>
+              <div class="draft-footer" id="draftFooter" hidden><span id="approvedCount">승인된 문제 0개</span><div class="draft-actions"><button class="button button-light" id="downloadBlooket">Blooket용 엑셀 다운로드 <span>↓</span></button><button class="button button-coral" id="publishQuestions">퀴즈에 사용하기 <span>→</span></button></div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="view student-view" id="playView" aria-labelledby="playTitle" hidden>
+        <div class="play-heading"><div><span class="section-kicker">CLASS QUEST · 2단원</span><h1 id="playTitle">고려의 건국과 통치 체제</h1><p>과제에 참여하고, 기다리는 동안 연습도 이어가요.</p></div><div class="play-score"><span>이번 과제 점수</span><strong id="playPoints">0<small>점</small></strong></div></div>
+        <div class="play-grid">
+          <section class="play-stage panel" aria-live="polite">
+            <div class="stage-top"><div class="live-indicator"><i></i><span id="stageStatus">과제 참여 대기 중</span></div><span class="stage-count" id="stageCount">과제 10문제</span></div>
+            <div id="introState" class="stage-state intro-state"><div class="stage-medallion"><svg viewBox="0 0 64 64" fill="none"><path d="M14 48h36M18 48V26l14-10 14 10v22M25 48V34h14v14M12 26h40" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="32" cy="26" r="2" fill="currentColor"/></svg></div><span class="overline">TODAY'S CLASS QUEST</span><h2>준비되면 과제에 참여하세요</h2><p>대기실에서도 고려 역사 문제를 연습할 수 있어요.<br />선생님이 시작하면 과제가 열립니다.</p><button class="button button-coral large-button" id="joinChallenge">과제 참여 <span>→</span></button><button class="button button-quiet" id="soloPractice">과제 없이 혼자 연습</button></div>
+            <div id="lobbyState" class="stage-state lobby-state" hidden><div class="lobby-banner"><span class="lobby-pulse"></span><div><strong>대기실에 들어왔어요</strong><small>선생님이 시작하기 전까지 단원 연습을 할 수 있어요.</small></div><span class="ready-pill" id="readyPill">참여 중</span></div><div class="lobby-content"><div class="lobby-copy"><span class="overline">WHILE YOU WAIT</span><h2>기다리는 동안<br />실력을 쌓아봐요.</h2><p>연습 문제는 과제 문제와 별도로 출제돼요.<br />진행 상황은 자동으로 저장됩니다.</p><div class="ready-status"><span class="ready-avatars"><i>민</i><i>서</i><i>하</i><b>+5</b></span><span id="readyText">8명 중 6명 준비 완료</span></div></div><div class="lobby-chest"><div class="chest-rays"></div><svg viewBox="0 0 150 110" fill="none"><path d="M20 45h110v53H20z" fill="#C86B42" stroke="#713E2D" stroke-width="6"/><path d="M15 44c0-18 13-31 30-31h60c17 0 30 13 30 31v9H15v-9Z" fill="#E38B55" stroke="#713E2D" stroke-width="6"/><path d="M67 51h17v25H67z" fill="#F6D16F" stroke="#713E2D" stroke-width="5"/><path d="M27 68h96M41 54v38m68-38v38" stroke="#713E2D" stroke-width="5"/></svg><span>연습할수록 기회가 쌓여요</span></div></div><div class="lobby-actions"><button class="button button-blue" id="waitingPractice">단원 연습 시작 <span>→</span></button><button class="text-button" id="toggleReady">준비 완료 표시 <span>↗</span></button></div></div>
+            <div id="quizState" class="stage-state quiz-state" hidden><div class="quiz-progress-row"><span id="quizModeLabel">과제 문제</span><span id="questionNumber">01 / 10</span></div><div class="progress-track"><span id="progressFill"></span></div><div class="streak-row"><span class="streak-flame"><svg viewBox="0 0 24 24" fill="none"><path d="M13 2c1 5-3 6-2 10 1-1 2-2 2-3 4 3 6 6 4 10-1 2-3 3-6 3-4 0-7-3-7-7 0-3 2-6 5-9 0 3 1 4 2 5 0-4 1-6 2-9Z" fill="currentColor"/></svg></span><span><strong id="streakCount">0</strong> 연속 정답</span><span class="reward-hint" id="rewardHint">5연속 정답이면 보물 상자!</span></div><h2 class="question-title" id="questionText">문제가 여기에 표시돼요.</h2><div class="question-source" id="questionSource" hidden></div><div class="answer-options" id="answerOptions"></div><div class="short-answer-row" id="shortAnswerRow" hidden><input id="shortAnswerInput" type="text" placeholder="정답을 입력해 보세요" /><button class="button button-ink" id="submitShortAnswer">정답 확인</button></div><div class="question-feedback" id="questionFeedback" hidden></div><div class="quiz-bottom"><span id="quizPointsText">이번 정답 점수는 5~15점 사이!</span><button class="button button-ink" id="nextQuestion" hidden>다음 문제 <span>→</span></button></div></div>
+            <div id="resultState" class="stage-state result-state" hidden><div class="result-medal">✦</div><span class="overline">QUEST COMPLETE</span><h2>오늘의 고려 탐험 완료!</h2><p id="resultMessage">끝까지 도전했어요.</p><div class="result-score"><span id="resultScoreLabel">이번 과제 점수</span><strong id="resultPoints">0점</strong></div><button class="button button-coral" id="playAgain">한 번 더 도전 <span>↗</span></button><button class="button button-blue" id="returnLobby" hidden>대기실로 돌아가기 <span>→</span></button><button class="text-button" data-go="home">학습 홈으로 돌아가기</button></div>
+          </section>
+          <aside class="play-side">
+            <section class="panel side-panel leaderboard-panel"><div class="side-heading"><div><span class="section-kicker">THIS QUEST</span><h2>오늘의 순위</h2></div><span class="rank-date">2단원</span></div><ol class="leaderboard" id="leaderboard"></ol><p class="leaderboard-note">연습 점수는 개인 기록에, 과제 점수는 오늘의 순위에 반영돼요.</p></section>
+            <section class="streak-card"><div class="streak-card-copy"><span class="section-kicker">TREASURE MOMENT</span><h3>5연속 정답을<br />이어가 보세요.</h3><p>상자 하나를 고르면<br />숨겨진 보상이 열려요.</p><div class="streak-dots" id="streakDots"><i></i><i></i><i></i><i></i><i></i></div></div><div class="mini-chest"><svg viewBox="0 0 100 74" fill="none"><path d="M12 31h76v36H12z" fill="#C86B42" stroke="#713E2D" stroke-width="4"/><path d="M9 30c0-13 9-22 21-22h40c12 0 21 9 21 22v6H9v-6Z" fill="#E38B55" stroke="#713E2D" stroke-width="4"/><path d="M43 35h14v18H43z" fill="#F6D16F" stroke="#713E2D" stroke-width="3"/></svg></div></section>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <div class="reward-overlay" id="rewardOverlay" hidden>
+      <div class="reward-modal" role="dialog" aria-modal="true" aria-labelledby="rewardTitle"><button class="modal-close" id="closeReward" aria-label="닫기">×</button><span class="section-kicker">FIVE IN A ROW!</span><h2 id="rewardTitle">보물 상자를 하나 골라요</h2><p>상자 안에 어떤 보상이 있는지는 열어봐야 알 수 있어요.</p><div class="chest-options" id="chestOptions"></div><div class="reward-reveal" id="rewardReveal" hidden></div><div class="swap-picker" id="swapPicker" hidden><span>점수를 바꿀 친구를 골라주세요.</span><div id="friendOptions"></div></div></div>
+    </div>
+    <div class="room-share-overlay" id="roomShareOverlay" hidden>
+      <section class="room-share-modal" role="dialog" aria-modal="true" aria-labelledby="roomShareTitle">
+        <button class="modal-close" id="closeRoomShare" aria-label="초대 창 닫기">×</button>
+        <span class="section-kicker">CLASSROOM INVITE</span>
+        <h2 id="roomShareTitle">QR로 학생을 초대해요</h2>
+        <p class="room-share-lead">학생이 QR을 스캔하면 바로 이 과제 대기실로 들어옵니다.</p>
+        <div class="room-share-content"><div class="room-qr-frame"><div id="roomQr"></div></div><div class="room-code-panel"><span>직접 입력할 참여 코드</span><strong id="roomCodeText">------</strong><button class="button button-light" id="copyRoomLink">초대 링크 복사 <span>↗</span></button></div></div>
+        <div class="room-connected-panel"><div><strong id="roomConnectedCount">0</strong><span> / 40명 접속</span></div><span class="room-live-dot"></span><p id="roomStatusText">학생이 접속하기를 기다리고 있어요.</p></div>
+        <button class="button button-coral room-start-button" id="startRoomTask">과제 시작하기 <span>→</span></button>
+        <button class="text-button room-close-button" id="closeRoomTask">수업 방 닫기</button>
+        <p class="room-share-footnote">과제를 시작한 뒤에도 학생은 QR이나 코드로 참여할 수 있어요.</p>
+      </section>
+    </div>
+    <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
+  </body>
+</html>

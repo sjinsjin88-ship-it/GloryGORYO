@@ -1,0 +1,149 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - link "고려의 길 홈" [ref=e3] [cursor=pointer]:
+      - /url: "#home"
+      - img [ref=e5]
+      - generic [ref=e8]:
+        - strong [ref=e9]: 고려의 길
+        - generic [ref=e10]: HISTORY QUEST
+    - navigation "주 메뉴" [ref=e11]:
+      - button "내 학습" [ref=e12] [cursor=pointer]
+      - button "문제 만들기" [ref=e13] [cursor=pointer]
+      - button "퀴즈 광장" [ref=e14] [cursor=pointer]
+    - generic [ref=e15]:
+      - generic [ref=e16]: 민
+      - generic [ref=e17]: 민서 학생
+  - main [ref=e19]:
+    - region "고려의 건국과 통치 체제" [ref=e20]:
+      - generic [ref=e21]:
+        - generic [ref=e22]:
+          - text: CLASS QUEST · 2단원
+          - heading "고려의 건국과 통치 체제" [level=1] [ref=e23]
+          - paragraph [ref=e24]: 과제에 참여하고, 기다리는 동안 연습도 이어가요.
+        - generic [ref=e25]:
+          - generic [ref=e26]: 이번 과제 점수
+          - strong [ref=e27]: 570점
+      - generic [ref=e28]:
+        - generic [ref=e29]:
+          - generic [ref=e30]:
+            - generic [ref=e33]: 과제 진행 중
+            - generic [ref=e34]: 과제 10문제
+          - generic [ref=e35]:
+            - img [ref=e37]
+            - generic [ref=e40]: TODAY'S CLASS QUEST
+            - heading "준비되면 과제에 참여하세요" [level=2] [ref=e41]
+            - paragraph [ref=e42]:
+              - text: 대기실에서도 고려 역사 문제를 연습할 수 있어요.
+              - text: 선생님이 시작하면 과제가 열립니다.
+            - button "과제 참여 →" [ref=e43] [cursor=pointer]:
+              - text: 과제 참여
+              - generic [ref=e44]: →
+            - button "과제 없이 혼자 연습" [ref=e45] [cursor=pointer]
+          - generic [ref=e46]:
+            - generic [ref=e47]:
+              - generic [ref=e48]: 과제 문제
+              - generic [ref=e49]: 01 / 10
+            - generic [ref=e51]:
+              - img [ref=e53]
+              - generic [ref=e55]:
+                - strong [ref=e56]: "0"
+                - text: 연속 정답
+              - generic [ref=e57]: 5연속 정답이면 보물 상자!
+            - heading "고려를 세우고 후삼국을 통일한 인물은 누구일까요?" [level=2] [ref=e58]
+            - generic [ref=e59]: 고려 역사 기본 문제 · 예시 문항
+            - generic [ref=e60]:
+              - button "A 왕건" [ref=e61] [cursor=pointer]:
+                - generic [ref=e62]: A
+                - generic [ref=e63]: 왕건
+              - button "B 궁예" [ref=e64] [cursor=pointer]:
+                - generic [ref=e65]: B
+                - generic [ref=e66]: 궁예
+              - button "C 견훤" [ref=e67] [cursor=pointer]:
+                - generic [ref=e68]: C
+                - generic [ref=e69]: 견훤
+              - button "D 광종" [ref=e70] [cursor=pointer]:
+                - generic [ref=e71]: D
+                - generic [ref=e72]: 광종
+            - generic [ref=e73]:
+              - textbox "정답을 입력해 보세요" [ref=e74]
+              - button "정답 확인" [ref=e75] [cursor=pointer]
+            - generic [ref=e76]:
+              - generic [ref=e77]: 정답마다 5~15점이 랜덤으로 쌓여요.
+              - button "다음 문제 →" [ref=e78] [cursor=pointer]:
+                - text: 다음 문제
+                - generic [ref=e79]: →
+          - generic [ref=e80]:
+            - generic [ref=e81]: ✦
+            - generic [ref=e82]: QUEST COMPLETE
+            - heading "오늘의 고려 탐험 완료!" [level=2] [ref=e83]
+            - paragraph [ref=e84]: 끝까지 도전했어요.
+            - generic [ref=e85]:
+              - generic [ref=e86]: 이번 과제 점수
+              - strong [ref=e87]: 0점
+            - button "한 번 더 도전 ↗" [ref=e88] [cursor=pointer]:
+              - text: 한 번 더 도전
+              - generic [ref=e89]: ↗
+            - button "대기실로 돌아가기 →" [ref=e90] [cursor=pointer]:
+              - text: 대기실로 돌아가기
+              - generic [ref=e91]: →
+            - button "학습 홈으로 돌아가기" [ref=e92] [cursor=pointer]
+        - complementary [ref=e93]:
+          - generic [ref=e94]:
+            - generic [ref=e95]:
+              - generic [ref=e96]:
+                - text: THIS QUEST
+                - heading "오늘의 순위" [level=2] [ref=e97]
+              - generic [ref=e98]: 2단원
+            - list [ref=e99]:
+              - listitem [ref=e100]:
+                - generic [ref=e101]: "01"
+                - generic [ref=e102]: 민
+                - generic [ref=e103]: 나 (민서)
+                - generic [ref=e104]: 570점
+              - listitem [ref=e105]:
+                - generic [ref=e106]: "02"
+                - generic [ref=e107]: 하
+                - generic [ref=e108]: 하준
+                - generic [ref=e109]: 510점
+              - listitem [ref=e110]:
+                - generic [ref=e111]: "03"
+                - generic [ref=e112]: 지
+                - generic [ref=e113]: 지우
+                - generic [ref=e114]: 455점
+              - listitem [ref=e115]:
+                - generic [ref=e116]: "04"
+                - generic [ref=e117]: 유
+                - generic [ref=e118]: 유나
+                - generic [ref=e119]: 405점
+              - listitem [ref=e120]:
+                - generic [ref=e121]: "05"
+                - generic [ref=e122]: 도
+                - generic [ref=e123]: 도윤
+                - generic [ref=e124]: 360점
+              - listitem [ref=e125]:
+                - generic [ref=e126]: "06"
+                - generic [ref=e127]: 채
+                - generic [ref=e128]: 채원
+                - generic [ref=e129]: 315점
+              - listitem [ref=e130]:
+                - generic [ref=e131]: "07"
+                - generic [ref=e132]: 준
+                - generic [ref=e133]: 준서
+                - generic [ref=e134]: 270점
+              - listitem [ref=e135]:
+                - generic [ref=e136]: "08"
+                - generic [ref=e137]: 서
+                - generic [ref=e138]: 서윤
+                - generic [ref=e139]: 54점
+            - paragraph [ref=e140]: 연습 점수는 개인 기록에, 과제 점수는 오늘의 순위에 반영돼요.
+          - generic [ref=e141]:
+            - generic [ref=e142]:
+              - text: TREASURE MOMENT
+              - heading "5연속 정답을 이어가 보세요." [level=3] [ref=e143]:
+                - text: 5연속 정답을
+                - text: 이어가 보세요.
+              - paragraph [ref=e144]:
+                - text: 상자 하나를 고르면
+                - text: 숨겨진 보상이 열려요.
+            - img [ref=e152]
+  - status

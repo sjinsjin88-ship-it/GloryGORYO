@@ -1,0 +1,100 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - link "고려의 길 홈" [ref=e3] [cursor=pointer]:
+      - /url: "#home"
+      - img [ref=e5]
+      - generic [ref=e8]:
+        - strong [ref=e9]: 고려의 길
+        - generic [ref=e10]: HISTORY QUEST
+    - navigation "주 메뉴" [ref=e11]:
+      - button "내 학습" [ref=e12] [cursor=pointer]
+      - button "문제 만들기" [ref=e13] [cursor=pointer]
+      - button "퀴즈 광장" [ref=e14] [cursor=pointer]
+    - generic [ref=e15]:
+      - generic [ref=e16]: 민
+      - generic [ref=e17]: 민서 학생
+  - main [ref=e18]:
+    - region "고려의 이야기를 내 점수로 바꿔봐요." [ref=e19]:
+      - generic [ref=e20]:
+        - generic [ref=e21]:
+          - generic [ref=e22]: 오늘의 역사 탐험
+          - heading "고려의 이야기를 내 점수로 바꿔봐요." [level=1] [ref=e24]:
+            - text: 고려의 이야기를
+            - emphasis [ref=e25]: 내 점수로
+            - text: 바꿔봐요.
+          - paragraph [ref=e26]: 문제를 풀고, 연속 정답을 이어가고, 숨겨진 보상을 찾아보세요.
+          - button "퀴즈 광장으로" [ref=e27] [cursor=pointer]:
+            - text: 퀴즈 광장으로
+            - generic [ref=e28]: ↗
+        - generic "고려 왕관과 보물 상자 일러스트" [ref=e29]:
+          - img [ref=e34]
+          - img [ref=e43]
+          - generic [ref=e48]: ✦
+          - generic [ref=e49]: ✧
+          - generic [ref=e50]: ✦
+          - generic [ref=e51]: 고려 918 — 1392
+        - generic [ref=e52]:
+          - generic [ref=e53]: 나의 도전 점수
+          - strong [ref=e54]: 0점
+          - generic [ref=e55]: 오늘도 한 문제씩 쌓아봐요
+      - generic [ref=e57]:
+        - generic [ref=e58]:
+          - text: CONTINUE YOUR JOURNEY
+          - heading "오늘은 어디부터 탐험할까요?" [level=2] [ref=e59]
+        - button "모두 보기 →" [ref=e60] [cursor=pointer]:
+          - text: 모두 보기
+          - generic [ref=e61]: →
+      - generic [ref=e62]:
+        - article [ref=e63]:
+          - generic [ref=e64]:
+            - img [ref=e66]
+            - generic [ref=e68]: 대기 중
+          - generic [ref=e70]: 학급 챌린지 · 2단원
+          - heading "고려의 건국과 통치 체제" [level=3] [ref=e71]:
+            - text: 고려의 건국과
+            - text: 통치 체제
+          - paragraph [ref=e72]: 선생님이 시작하기 전까지 연습할 수 있어요.
+          - button "과제 참여 →" [ref=e73] [cursor=pointer]:
+            - text: 과제 참여
+            - generic [ref=e74]: →
+        - article [ref=e75]:
+          - generic [ref=e76]:
+            - img [ref=e78]
+            - generic [ref=e81]: 혼자 연습하기
+          - generic [ref=e82]: 고려 시대 · 추천 코스
+          - heading "왕건부터 공민왕까지" [level=3] [ref=e83]:
+            - text: 왕건부터
+            - text: 공민왕까지
+          - paragraph [ref=e84]: 내 속도에 맞춰 문제를 반복해서 풀어요.
+          - button "연습 시작 →" [ref=e85] [cursor=pointer]:
+            - text: 연습 시작
+            - generic [ref=e86]: →
+        - article [ref=e87]:
+          - generic [ref=e88]:
+            - img [ref=e90]
+            - generic [ref=e93]: 선생님 도구
+          - generic [ref=e94]: PDF로 문제 만들기
+          - heading "교과서에서 퀴즈를 뽑아봐요" [level=3] [ref=e95]:
+            - text: 교과서에서
+            - text: 퀴즈를 뽑아봐요
+          - paragraph [ref=e96]: PDF를 올리고 초안을 검토해 확정해요.
+          - button "문제 만들기 →" [ref=e97] [cursor=pointer]:
+            - text: 문제 만들기
+            - generic [ref=e98]: →
+      - generic [ref=e99]:
+        - generic [ref=e100]:
+          - img [ref=e102]
+          - generic [ref=e104]:
+            - generic [ref=e105]: 현재 연속 정답
+            - strong [ref=e106]: 0문제
+          - generic [ref=e107]: ↗
+        - generic [ref=e108]:
+          - generic [ref=e109]: PDF
+          - generic [ref=e110]:
+            - generic [ref=e111]: 문제의 출처
+            - strong [ref=e112]: 교과서 근거와 함께 확인
+          - button "PDF 문제 만들기" [ref=e113] [cursor=pointer]: ↗
+      - generic [ref=e114]:
+        - generic [ref=e115]: 고려의 길
+        - generic [ref=e116]: 배움은 탐험처럼, 한 문제부터.
+  - status

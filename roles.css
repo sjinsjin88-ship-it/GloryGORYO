@@ -1,0 +1,133 @@
+[hidden]{display:none!important}
+.role-select-view.active{display:grid}
+.role-header .header-actions{display:flex;align-items:center;gap:16px}
+.role-header .profile-chip{min-width:0}
+.teacher-brand-mark{background:#e6ebe3;color:#55745d}
+.teacher-avatar{background:#dfe8df;color:#55745d}
+.role-switch{min-height:36px;padding:0 11px;border:1px solid #e7e1d6;border-radius:8px;background:#fffefa;color:#737c75;font-size:11px;font-weight:700}
+.role-switch:hover{background:#f4f0e7;color:#43574b}
+.role-select-view{min-height:calc(100vh - 78px);place-items:center;padding:48px 24px 60px;background:radial-gradient(circle at 12% 15%,rgba(226,190,113,.16),transparent 25%),radial-gradient(circle at 90% 80%,rgba(97,146,131,.12),transparent 28%)}
+.role-select-shell{width:min(100%,980px);margin:auto}
+.role-select-brand{margin:0 auto 42px;width:max-content}
+.role-intro{text-align:center;margin-bottom:34px}
+.role-intro .eyebrow{justify-content:center}
+.role-intro h1{font-size:clamp(34px,5vw,50px);line-height:1.2;letter-spacing:-2.5px;color:#233b42;margin:10px 0 13px}
+.role-intro p{font-size:15px;line-height:1.8;color:#6c7b77;margin:0}
+.role-choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:780px;margin:0 auto}
+.role-choice{min-height:270px;border:1px solid #e8e4da;border-radius:20px;padding:25px 28px;background:#fffefa;position:relative;overflow:hidden;box-shadow:0 8px 26px rgba(34,51,54,.045);transition:transform .2s,box-shadow .2s}
+.role-choice:hover{transform:translateY(-4px);box-shadow:0 14px 32px rgba(34,51,54,.09)}
+.student-choice{background:linear-gradient(145deg,#f4fbf8,#eaf2ed)}
+.teacher-choice{background:linear-gradient(145deg,#fffaf0,#f3eee1)}
+.role-choice:after{content:"";position:absolute;width:190px;height:190px;right:-82px;bottom:-100px;border:1px solid rgba(63,108,95,.17);border-radius:50%;box-shadow:0 0 0 15px rgba(255,255,255,.12),0 0 0 31px rgba(255,255,255,.1)}
+.teacher-choice:after{border-color:rgba(173,132,52,.18)}
+.role-card-icon{width:50px;height:50px;border-radius:15px;display:grid;place-items:center;margin-bottom:18px}
+.role-card-icon svg{width:33px}
+.student-card-icon{background:#dcebe4;color:#527b68}
+.teacher-card-icon{background:#f0e4c9;color:#98712f}
+.role-label{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#687a70;font-weight:800}
+.teacher-choice .role-label{color:#816b3d}
+.role-choice h2{font-size:23px;letter-spacing:-.8px;color:#293e42;margin:5px 0 8px}
+.role-choice p{font-size:14px;line-height:1.7;color:#65756e;margin:0 0 17px}
+.role-enter{position:relative;z-index:1;min-width:175px;min-height:44px;font-size:12px}
+.role-demo-note{text-align:center;margin:21px 0 0;color:#747d75;font-size:12px}
+.teacher-welcome{min-height:210px;padding:34px 38px;border-radius:19px;background:#e8eee6;display:flex;justify-content:space-between;align-items:center;gap:24px;position:relative;overflow:hidden}
+.teacher-welcome:after{content:"";position:absolute;right:170px;top:-140px;width:380px;height:380px;border:1px solid rgba(81,119,91,.16);border-radius:50%;box-shadow:0 0 0 24px rgba(255,255,255,.08),0 0 0 50px rgba(255,255,255,.07);pointer-events:none}
+.teacher-welcome>div,.teacher-welcome>.button{position:relative;z-index:1}
+.teacher-welcome h1{font-size:32px;letter-spacing:-1.5px;color:#263d3d;margin:7px 0}
+.teacher-welcome p{font-size:14px;color:#5f7168;margin:0}
+.teacher-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin:15px 0 37px}
+.teacher-metric{min-height:86px;border:1px solid #ebe7dd;background:#fffefa;border-radius:13px;padding:14px;display:flex;align-items:center;gap:12px}
+.metric-icon{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font:800 10px "DM Sans",sans-serif}
+.metric-book{background:#f4ead3;color:#80601f}
+.metric-class{background:#e4eee6;color:#486a50}
+.metric-unit{background:#e5edf0;color:#466873}
+.teacher-metric div{display:grid;gap:3px}
+.teacher-metric div span{font-size:11px;color:#69776e}
+.teacher-metric strong{font-size:15px;color:#344a48}
+.teacher-section-heading{display:flex;justify-content:space-between;align-items:end;margin:0 1px 15px}
+.teacher-section-heading h2{font-size:21px;color:#293d41;margin:4px 0 0}
+.teacher-class-code{font-size:11px;color:#72766d}
+.teacher-class-code b{margin-left:6px;padding:7px 10px;border-radius:7px;background:#f0ecdf;color:#685629;letter-spacing:.5px}
+.teacher-actions-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+.teacher-action-card{min-height:220px;border-radius:15px;padding:20px 21px;display:flex;flex-direction:column;align-items:flex-start}
+.create-action{background:#f2e0d7}
+.export-action{background:#e4edeb}
+.assignment-action{background:#f0e9d9}
+.teacher-action-number{font:800 10px "DM Sans","Noto Sans KR",sans-serif;letter-spacing:.8px;color:#766345}
+.teacher-action-card h3{font-size:19px;line-height:1.35;letter-spacing:-.6px;color:#34464a;margin:13px 0 6px}
+.teacher-action-card p{font-size:12px;line-height:1.65;color:#65736d;margin:0 0 13px}
+.teacher-action-card .text-button{margin-top:auto;color:#5e543d;font-size:12px}
+.assignment-action .button{margin-top:auto;min-height:42px;font-size:12px}
+.teacher-footnote{display:flex;align-items:center;gap:9px;margin-top:15px;padding:11px 13px;border-radius:10px;background:#f1f2ec;color:#65736a}
+.teacher-footnote-mark{width:19px;height:19px;border-radius:50%;background:#dce7dc;display:grid;place-items:center;font:800 11px "DM Sans",sans-serif;color:#466349}
+.teacher-footnote p{font-size:11px;margin:0;line-height:1.5}
+.rank-mark{font:800 15px "DM Sans",sans-serif}
+.student-view .home-bottom-row{grid-template-columns:1fr 1fr}
+#lobbyState .ready-status,#lobbyState #toggleReady{display:none}
+.student-code-join{display:grid;grid-template-columns:1fr 170px auto;align-items:center;gap:12px;margin:14px 0;padding:14px 16px;border:1px solid #e9e5dc;border-radius:12px;background:#fffefa}
+.student-code-join>div{display:grid;gap:3px}.student-code-join>div span{font-size:12px;font-weight:800;color:#35484b}.student-code-join small{font-size:10px;color:#748179}.student-code-join input{height:40px;border:1px solid #e7e2d7;border-radius:8px;padding:0 11px;letter-spacing:2px;text-transform:uppercase;font:700 13px "DM Sans",sans-serif;color:#32484b}.student-code-join .button{min-height:40px;font-size:11px}
+.room-share-overlay{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:18px;background:rgba(25,39,44,.52);backdrop-filter:blur(5px)}
+.room-share-overlay[hidden]{display:none!important}
+.room-share-modal{width:min(470px,100%);padding:30px;border-radius:20px;background:#fffefa;box-shadow:0 22px 80px rgba(22,34,39,.24);position:relative;text-align:center}
+.room-share-modal h2{font-size:24px;letter-spacing:-.9px;color:#293f44;margin:8px 0}
+.room-share-lead{font-size:13px;line-height:1.6;color:#74817b;margin:0 auto 20px;max-width:330px}
+.room-share-content{display:grid;grid-template-columns:184px 1fr;align-items:center;gap:18px;text-align:left;padding:16px;border:1px solid #ece8de;border-radius:14px;background:#fcfbf6}
+.room-qr-frame{min-height:184px;display:grid;place-items:center;background:white;border:1px solid #eee9dd;border-radius:10px;padding:10px}
+#roomQr{width:160px;height:160px;display:grid;place-items:center}
+#roomQr img,#roomQr canvas{max-width:100%;height:auto!important}
+.room-code-panel{display:grid;justify-items:start;gap:7px}
+.room-code-panel>span{font-size:11px;color:#737e76;font-weight:700}
+.room-code-panel strong{font:800 27px "DM Sans",monospace;letter-spacing:3px;color:#263e45}
+.room-code-panel .button{min-height:38px;font-size:11px;padding:0 12px}
+.room-connected-panel{position:relative;display:flex;align-items:center;gap:12px;margin:14px 0;padding:13px 15px;border-radius:11px;background:#edf3eb;text-align:left}
+.room-connected-panel>div{display:flex;align-items:baseline;gap:4px;white-space:nowrap}
+.room-connected-panel strong{font:800 26px "DM Sans",sans-serif;color:#557e5b}
+.room-connected-panel>div span{font-size:11px;color:#708071}
+.room-live-dot{width:8px;height:8px;flex:0 0 8px;border-radius:50%;background:#69a174;box-shadow:0 0 0 4px #dcebdc}
+.room-connected-panel p{font-size:11px;line-height:1.45;color:#6f7c72;margin:0}
+.room-start-button{width:100%;min-height:46px}
+.room-start-button:disabled{background:#68836b;color:white;opacity:1}
+.room-share-footnote{font-size:10px;color:#8b9187;line-height:1.5;margin:11px 0 0}
+@media(max-width:760px){
+  .role-header{padding:0 14px;gap:8px}
+  .role-header .brand{min-width:0}
+  .role-header .main-nav{gap:12px}
+  .role-header .profile-chip{font-size:0!important;min-width:34px}
+  .role-header .profile-chip .profile-avatar{font-size:12px}
+  .role-switch{font-size:10px;padding:0 8px;white-space:nowrap}
+  .role-select-view{min-height:calc(100vh - 64px);padding:30px 16px 40px}
+  .role-select-brand{margin-bottom:28px}
+  .role-intro{margin-bottom:22px}
+  .role-intro h1{font-size:36px}
+  .role-intro p{font-size:13px}
+  .role-choice-grid{grid-template-columns:1fr;max-width:480px;gap:11px}
+  .role-choice{min-height:220px;padding:20px}
+  .role-card-icon{width:43px;height:43px;margin-bottom:12px}
+  .role-card-icon svg{width:29px}
+  .role-choice h2{font-size:21px}
+  .role-choice p{margin-bottom:12px}
+  .teacher-welcome{padding:24px 20px;align-items:flex-start;flex-direction:column;min-height:0}
+  .teacher-welcome h1{font-size:25px}
+  .teacher-welcome p{font-size:13px;line-height:1.7}
+  .teacher-welcome>.button{min-height:42px}
+  .teacher-metrics{grid-template-columns:1fr;gap:8px;margin-bottom:27px}
+  .teacher-metric{min-height:65px}
+  .teacher-section-heading{align-items:flex-start;gap:12px;flex-direction:column}
+  .teacher-section-heading h2{font-size:18px}
+  .teacher-actions-grid{grid-template-columns:1fr;gap:9px}
+  .teacher-action-card{min-height:185px;padding:17px}
+  .teacher-action-card h3{font-size:18px;margin-top:9px}
+  .teacher-action-card p{font-size:13px}
+  .teacher-footnote p{font-size:12px}
+  .student-view .home-bottom-row{grid-template-columns:1fr}
+  .student-code-join{grid-template-columns:1fr 1fr;gap:9px;padding:13px}.student-code-join>div{grid-column:1/-1}.student-code-join input,.student-code-join .button{width:100%;min-width:0}
+  .room-share-modal{padding:25px 17px 20px}
+  .room-share-content{grid-template-columns:150px 1fr;gap:11px;padding:10px}
+  .room-qr-frame{min-height:148px;padding:6px}
+  #roomQr{width:132px;height:132px}
+  .room-code-panel strong{font-size:22px;letter-spacing:2px}
+  .room-code-panel .button{font-size:10px;padding:0 8px}
+  .room-connected-panel{gap:9px;padding:11px}
+  .room-connected-panel strong{font-size:22px}
+  .room-connected-panel p{font-size:10px}
+}
